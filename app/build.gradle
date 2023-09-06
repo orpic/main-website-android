@@ -51,13 +51,14 @@ def twaManifest = [
 ]
 
 android {
-    compileSdkVersion 33
+//    compileSdkVersion 33
+    compileSdk 33
     defaultConfig {
         applicationId "app.shobhit.twa"
-        minSdkVersion 19
+        minSdkVersion 26
         targetSdkVersion 33
         versionCode 1
-        versionName "1"
+        versionName "1.0.0"
 
         // The name for the application
         resValue "string", "appName", twaManifest.name
@@ -154,12 +155,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    lintOptions {
+    namespace 'app.shobhit.twa'
+    lint {
         checkReleaseBuilds false
     }
 }
 
-task generateShorcutsFile {
+tasks.register('generateShorcutsFile') {
     assert twaManifest.shortcuts.size() < 5, "You can have at most 4 shortcuts."
     twaManifest.shortcuts.eachWithIndex { s, i ->
         assert s.name != null, 'Missing `name` in shortcut #' + i
@@ -174,23 +176,23 @@ task generateShorcutsFile {
     def xmlMarkup = new MarkupBuilder(new IndentPrinter(xmlWriter, "    ", true))
 
     xmlMarkup
-        .'shortcuts'('xmlns:android': 'http://schemas.android.com/apk/res/android') {
-            twaManifest.shortcuts.eachWithIndex { s, i ->
-                'shortcut'(
-                        'android:shortcutId': 'shortcut' + i,
-                        'android:enabled': 'true',
-                        'android:icon': '@drawable/' + s.icon,
-                        'android:shortcutShortLabel': '@string/shortcut_short_name_' + i,
-                        'android:shortcutLongLabel': '@string/shortcut_name_' + i) {
-                    'intent'(
-                            'android:action': 'android.intent.action.MAIN',
-                            'android:targetPackage': twaManifest.applicationId,
-                            'android:targetClass': twaManifest.applicationId + '.LauncherActivity',
-                            'android:data': s.url)
-                    'categories'('android:name': 'android.intent.category.LAUNCHER')
+            .'shortcuts'('xmlns:android': 'http://schemas.android.com/apk/res/android') {
+                twaManifest.shortcuts.eachWithIndex { s, i ->
+                    'shortcut'(
+                            'android:shortcutId': 'shortcut' + i,
+                            'android:enabled': 'true',
+                            'android:icon': '@drawable/' + s.icon,
+                            'android:shortcutShortLabel': '@string/shortcut_short_name_' + i,
+                            'android:shortcutLongLabel': '@string/shortcut_name_' + i) {
+                        'intent'(
+                                'android:action': 'android.intent.action.MAIN',
+                                'android:targetPackage': twaManifest.applicationId,
+                                'android:targetClass': twaManifest.applicationId + '.LauncherActivity',
+                                'android:data': s.url)
+                        'categories'('android:name': 'android.intent.category.LAUNCHER')
+                    }
                 }
             }
-        }
     shortcutsFile.text = xmlWriter.toString() + '\n'
 }
 
