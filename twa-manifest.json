@@ -1,0 +1,43 @@
+{
+  "packageId": "app.shobhit.twa",
+  "host": "shobhit.app",
+  "name": "Shobhit Umrao",
+  "launcherName": "Shobhit",
+  "display": "standalone",
+  "themeColor": "#262626",
+  "themeColorDark": "#000000",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#262626",
+  "enableNotifications": true,
+  "startUrl": "/",
+  "iconUrl": "https://shobhit.app/shobhit512.png",
+  "maskableIconUrl": "https://shobhit.app/shobhit512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "H:\\android-projects\\shobhit-main-website\\android.keystore",
+    "alias": "android"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://shobhit.app/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://shobhit.app/",
+  "minSdkVersion": 19,
+  "orientation": "default",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "appVersion": "1"
+}
